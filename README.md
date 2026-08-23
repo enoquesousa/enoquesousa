@@ -32,6 +32,17 @@ Data and AI are tools inside that work—not labels. I use them when they improv
 
 **600+** Windows endpoints managed · **146** sites observed · **32k+** service records turned into operational decisions
 
+## Open Source
+
+| Project | What it demonstrates |
+| --- | --- |
+| [godeploy-platform](https://github.com/enoquesousa/godeploy-platform) | Self-hosted deployments, Docker builds, Git webhooks and domain routing in Go |
+| [goobservabilitystack](https://github.com/enoquesousa/goobservabilitystack) | RED signals, Prometheus metrics and OpenTelemetry tracing for Go services |
+| [wallet-live](https://github.com/enoquesousa/wallet-live) | Exact financial accounting, immutable ledger design and secure Rust web development |
+| [Beam](https://github.com/enoquesousa/ia-mobile-to-desktop-write) | Encrypted local-first clipboard sync between Windows and Android |
+| [veloryft-hud](https://github.com/enoquesousa/veloryft-hud) | Low-latency Rust telemetry and a native Windows Direct2D overlay |
+| [py-etl-pipeline](https://github.com/enoquesousa/py-etl-pipeline) | Reliable bulk and upsert data ingestion into PostgreSQL |
+
 <h2>Selected Work</h2>
 
 <h3>
