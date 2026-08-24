@@ -141,7 +141,7 @@ Data and AI are tools inside that work—not labels. I use them when they improv
 <div align="center">
   <a href="https://github.com/enoquesousa">
     <img
-      src="https://github-readme-stats.shion.dev/api/top-langs?username=enoquesousa&amp;layout=compact&amp;langs_count=8&amp;card_width=900&amp;hide_border=true&amp;bg_color=071116&amp;title_color=FFB454&amp;text_color=E7F0F2"
+      src="./assets/top-languages-centered.svg"
       width="100%"
       alt="Most used languages by Enoque Sousa"
     />
