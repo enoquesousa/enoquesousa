@@ -141,7 +141,7 @@ Data and AI are tools inside that work—not labels. I use them when they improv
 <div align="center">
   <a href="https://github.com/enoquesousa">
     <img
-      src="./assets/top-languages-centered.svg"
+      src="https://esousa97.com/api/top-langs?username=enoquesousa&amp;layout=compact&amp;langs_count=8&amp;theme=dracula-black&amp;disable_animations=true"
       width="100%"
       alt="Most used languages by Enoque Sousa"
     />
