@@ -136,14 +136,14 @@ Data and AI are tools inside that work—not labels. I use them when they improv
 
 ---
 
-<h2>GitHub Stats</h2>
+<h2>Top Languages</h2>
 
 <div align="center">
   <a href="https://github.com/enoquesousa">
     <img
-      src="https://github-readme-stats.shion.dev/api?username=enoquesousa&show_icons=true&include_all_commits=true&hide_border=true&bg_color=071116&title_color=FFB454&text_color=E7F0F2&icon_color=66D0EA&ring_color=FFB454"
-      height="165"
-      alt="Enoque Sousa GitHub Stats"
+      src="https://github-readme-stats.shion.dev/api/top-langs?username=enoquesousa&amp;layout=compact&amp;langs_count=8&amp;hide_border=true&amp;bg_color=071116&amp;title_color=FFB454&amp;text_color=E7F0F2"
+      height="190"
+      alt="Most used languages by Enoque Sousa"
     />
   </a>
 </div>
