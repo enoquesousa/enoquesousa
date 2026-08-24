@@ -134,10 +134,6 @@ Data and AI are tools inside that work—not labels. I use them when they improv
   <img src="https://img.shields.io/badge/Prometheus-A95800?style=flat&logo=prometheus&logoColor=white" height="24" alt="Prometheus" />
 </p>
 
----
-
-<h2>Top Languages</h2>
-
 <div align="center">
   <a href="https://github.com/enoquesousa">
     <img
