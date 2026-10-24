@@ -1,26 +1,85 @@
-# .github/workflows/snake.yml
 name: Generate Snake
 
 on:
   schedule:
     - cron: "0 0 * * *"
-  workflow_dispatch:
+  workflow_dispatch: {}
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/snake.yml
+      - .github/AUTOMATION.md
+
+# The generator queries GitHub but cannot push repository contents. Other token
+# permissions are not granted; only the separate publishing job needs write.
+permissions:
+  contents: read
+
+concurrency:
+  group: contribution-snake-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   generate:
+    name: Generate SVGs
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      artifact_id: ${{ steps.artifacts.outputs.artifact-id }}
     steps:
-      - uses: Platane/snk@v3
+      - name: Generate contribution animations
+        uses: Platane/snk/svg-only@d8f6715049803e982ee5ff501b6b9b7d5deeb09b # v3.5.0, Node 24
         with:
           github_user_name: ${{ github.repository_owner }}
+          github_token: ${{ github.token }}
           outputs: |
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
             dist/github-contribution-grid-snake-tech.svg?palette=github-dark&color_snake=1a6fa0&color_dots=#0d1117,#0d2137,#0a3d62,#1a6fa0,#58a6ff
 
-      - uses: crazy-max/ghaction-github-pages@v3
+      - name: Verify all requested animations exist
+        run: |
+          test -s dist/github-contribution-grid-snake.svg
+          test -s dist/github-contribution-grid-snake-dark.svg
+          test -s dist/github-contribution-grid-snake-tech.svg
+
+      - name: Retain generated SVGs
+        id: artifacts
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: contribution-snake
+          path: |
+            dist/github-contribution-grid-snake.svg
+            dist/github-contribution-grid-snake-dark.svg
+            dist/github-contribution-grid-snake-tech.svg
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    name: Publish SVGs
+    needs: generate
+    # A PR only generates a review artifact. Manual runs on another branch do
+    # not publish either; publication stays on the original schedule/main flow.
+    if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - name: Download this run's verified SVG artifact
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          artifact-ids: ${{ needs.generate.outputs.artifact_id }}
+          path: dist
+          merge-multiple: true
+          digest-mismatch: error
+
+      - name: Update the output branch
+        uses: crazy-max/ghaction-github-pages@1d6ee9b181a81033a16bd707a1401afa978daab4 # v5.0.0, Node 24
         with:
           target_branch: output
           build_dir: dist
+          keep_history: true
+          allow_empty_commit: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
